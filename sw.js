@@ -1,4 +1,4 @@
-const CACHE_NAME = 'palavra-cache-v1';
+const CACHE_NAME = 'palavra-cache-v2';
 const OFFLINE_PAGE = '/index.html';
 const ASSETS = [
   '/',
