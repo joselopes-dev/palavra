@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#00008B">
+    <meta name="theme-color" content="#DAA520">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="./icon-192x192.png">
     <title>Caça-Palavras Bíblico</title>
@@ -468,64 +468,69 @@
 
     <script defer>
         document.addEventListener('DOMContentLoaded', function() {
-            // Game data with multiple games per level
+            // Função para normalizar strings (remover acentos)
+            function normalizeString(str) {
+                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+            }
+
+            // Game data with multiple games per level (palavras corrigidas e normalizadas)
             const gameData = {
                 facil: [
                     {
-                        words: ["JERUSALÉM", "BELÉM", "NAZARÉ", "JERICÓ", "EGITO", 
-                                "CANAÃ", "SINAI", "GALILÉIA", "SAMARIA", "JORDÃO"],
+                        words: ["JERUSALEM", "BELEM", "NAZARE", "JERICO", "EGITO", 
+                                "CANA", "SINAI", "GALILEIA", "SAMARIA", "JORDAO"],
                         gridSize: 10,
                         directions: ['horizontal', 'vertical']
                     },
                     {
-                        words: ["BETÂNIA", "JOPE", "CESAREIA", "DAMASCO", "ANTIOQUIA",
-                                "CORINTO", "ÉFESO", "ROMA", "ATENAS", "TESSALÔNICA"],
-                        gridSize: 10,
+                        words: ["BETANIA", "JOPE", "CESAREIA", "DAMASCO", "ANTIOQUIA",
+                                "CORINTO", "EFESO", "ROMA", "ATENAS", "TESSALONICA"],
+                        gridSize: 12,
                         directions: ['horizontal', 'vertical', 'diagonal']
                     },
                     {
-                        words: ["FILIPOS", "GÁLATAS", "PÉRGAMO", "LAODICEIA", "PATMOS",
-                                "SARDES", "TIATIRA", "SÍRIA", "LIBANO", "GETSÊMANI"],
-                        gridSize: 10,
+                        words: ["FILIPOS", "GALATAS", "PERGAMO", "LAODICEIA", "PATMOS",
+                                "SARDES", "TIATIRA", "SIRIA", "LIBANO", "GETSEMANI"],
+                        gridSize: 12,
                         directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal']
                     }
                 ],
                 medio: [
                     {
-                        words: ["GOLGOTA", "SILOÉ", "BETESDA", "HOREBE", "ARARATE",
-                                "ARMAGEDOM", "DECÁPOLIS", "QUIRENE", "MACEDÔNIA", "PISÍDIA"],
+                        words: ["GOLGOTA", "SILOE", "BETESDA", "HOREBE", "ARARATE",
+                                "ARMAGEDOM", "DECAPOLIS", "QUIRENE", "MACEDONIA", "PISIDIA"],
                         gridSize: 12,
                         directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal']
                     },
                     {
-                        words: ["PANFÍLIA", "CAPADÓCIA", "BITÍNIA", "PÔNTICO", "CILÍCIA",
-                                "FRÍGIA", "LÍCIA", "MÍSIA", "ACÁIA", "GERGESA"],
+                        words: ["PANFILIA", "CAPADOCIA", "BITINIA", "PONTICO", "CILICIA",
+                                "FRIGIA", "LICIA", "MISIA", "ACAIA", "GERGESA"],
                         gridSize: 12,
                         directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal']
                     },
                     {
                         words: ["GADARA", "CESAREIA", "SICAR", "ENOM", "SIDOM",
-                                "TIRO", "ASCALOM", "GAZA", "ARIMATEIA", "FILADÉLFIA"],
-                        gridSize: 12,
+                                "TIRO", "ASCALOM", "GAZA", "ARIMATEIA", "FILADELFIA"],
+                        gridSize: 14,
                         directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-vertical']
                     }
                 ],
                 dificil: [
                     {
-                        words: ["ESMIRNA", "TARSO", "LISTRA", "DERBE", "ICÔNIO",
-                                "APOLÔNIA", "ANFÍPOLIS", "BEROÉIA", "NEÁPOLIS", "TROAS"],
+                        words: ["ESMIRNA", "TARSO", "LISTRA", "DERBE", "ICONIO",
+                                "APOLONIA", "ANFIPOLIS", "BEROEIA", "NEAPOLIS", "TROAS"],
                         gridSize: 14,
                         directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
                     },
                     {
-                        words: ["ASSOS", "MÍTILENE", "QUIOS", "SAMOS", "MILETO",
-                                "CÓS", "RÔDES", "PATARA", "COLOSSOS", "HIERÁPOLIS"],
+                        words: ["ASSOS", "MITILENE", "QUIOS", "SAMOS", "MILETO",
+                                "COS", "RODES", "PATARA", "COLOSSOS", "HIERAPOLIS"],
                         gridSize: 14,
                         directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
                     },
                     {
-                        words: ["PENTÁPOLIS", "ARIMATEIA", "FILADÉLFIA", "ESMIRNA", "TARSO",
-                                "LISTRA", "DERBE", "ICÔNIO", "APOLÔNIA", "ANFÍPOLIS"],
+                        words: ["PENTAPOLIS", "ARIMATEIA", "FILADELFIA", "ESMIRNA", "TARSO",
+                                "LISTRA", "DERBE", "ICONIO", "APOLONIA", "ANFIPOLIS"],
                         gridSize: 14,
                         directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
                     }
@@ -552,7 +557,6 @@
             const foundCount = document.getElementById('found-count');
             const totalWords = document.getElementById('total-words');
             const resetBtn = document.getElementById('reset-btn');
-            const shuffleBtn = document.getElementById('shuffle-btn');
             const nextBtn = document.getElementById('next-btn');
             const notification = document.getElementById('notification');
             const levelBtn = document.getElementById('level-btn');
@@ -591,11 +595,6 @@
             resetBtn.addEventListener('click', function() {
                 initGame(currentLevel, currentGameIndex);
             });
-            
-            // Shuffle button
-            //shuffleBtn.addEventListener('click', function() {
-                //shuffleGrid();
-            //});
             
             // Next button
             nextBtn.addEventListener('click', function() {
@@ -732,44 +731,6 @@
                 lastTouchCell = null;
             }
             
-            // Shuffle the grid (random letters only)
-            function shuffleGrid() {
-                const gridSize = gameData[currentLevel][currentGameIndex].gridSize;
-                const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                
-                // Preserve found words
-                const preservedCells = [];
-                
-                // Mark found words so we don't shuffle them
-                document.querySelectorAll('td.found').forEach(cell => {
-                    const row = parseInt(cell.dataset.row);
-                    const col = parseInt(cell.dataset.col);
-                    preservedCells.push({row, col, letter: gameGrid[row][col]});
-                });
-                
-                // Fill the grid with random letters
-                for (let i = 0; i < gridSize; i++) {
-                    for (let j = 0; j < gridSize; j++) {
-                        // Skip preserved cells
-                        const isPreserved = preservedCells.some(cell => cell.row === i && cell.col === j);
-                        if (!isPreserved) {
-                            gameGrid[i][j] = letters[Math.floor(Math.random() * letters.length)];
-                        }
-                    }
-                }
-                
-                // Re-render the grid
-                renderGrid();
-                
-                // Re-apply found class to preserved cells
-                preservedCells.forEach(cell => {
-                    const td = document.querySelector(`td[data-row="${cell.row}"][data-col="${cell.col}"]`);
-                    if (td) {
-                        td.classList.add('found');
-                    }
-                });
-            }
-            
             // Place words in the grid (random positions each game)
             function placeWords() {
                 const words = [...gameData[currentLevel][currentGameIndex].words];
@@ -779,11 +740,13 @@
                 // Shuffle words for random placement
                 shuffleArray(words);
                 
+                // Improved placement algorithm
                 words.forEach(word => {
                     let placed = false;
                     let attempts = 0;
+                    const maxAttempts = 500; // Increased from 100 to 500
                     
-                    while (!placed && attempts < 100) {
+                    while (!placed && attempts < maxAttempts) {
                         // Choose random direction
                         const direction = directions[Math.floor(Math.random() * directions.length)];
                         const row = Math.floor(Math.random() * gridSize);
@@ -797,6 +760,11 @@
                         }
                         
                         attempts++;
+                    }
+                    
+                    // If we couldn't place the word, log an error (shouldn't happen with increased attempts)
+                    if (!placed) {
+                        console.error(`Não foi possível colocar a palavra: ${word}`);
                     }
                 });
             }
