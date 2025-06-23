@@ -473,69 +473,69 @@
                 return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
             }
 
-            // Game data with multiple games per level (palavras corrigidas e normalizadas)
+           // Game data with multiple games per level (palavras corrigidas e normalizadas)
             const gameData = {
-                facil: [
-                    {
-                        words: ["JERUSALEM", "BELEM", "NAZARE", "JERICO", "EGITO", 
-                                "CANA", "SINAI", "GALILEIA", "SAMARIA", "JORDAO"],
-                        gridSize: 10,
-                        directions: ['horizontal', 'vertical']
-                    },
-                    {
-                        words: ["BETANIA", "JOPE", "CESAREIA", "DAMASCO", "ANTIOQUIA",
-                                "CORINTO", "EFESO", "ROMA", "ATENAS", "TESSALONICA"],
-                        gridSize: 12,
-                        directions: ['horizontal', 'vertical', 'diagonal']
-                    },
-                    {
-                        words: ["FILIPOS", "GALATAS", "PERGAMO", "LAODICEIA", "PATMOS",
-                                "SARDES", "TIATIRA", "SIRIA", "LIBANO", "GETSEMANI"],
-                        gridSize: 12,
-                        directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal']
-                    }
-                ],
-                medio: [
-                    {
-                        words: ["GOLGOTA", "SILOE", "BETESDA", "HOREBE", "ARARATE",
-                                "ARMAGEDOM", "DECAPOLIS", "QUIRENE", "MACEDONIA", "PISIDIA"],
-                        gridSize: 12,
-                        directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal']
-                    },
-                    {
-                        words: ["PANFILIA", "CAPADOCIA", "BITINIA", "PONTICO", "CILICIA",
-                                "FRIGIA", "LICIA", "MISIA", "ACAIA", "GERGESA"],
-                        gridSize: 12,
-                        directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal']
-                    },
-                    {
-                        words: ["GADARA", "CESAREIA", "SICAR", "ENOM", "SIDOM",
-                                "TIRO", "ASCALOM", "GAZA", "ARIMATEIA", "FILADELFIA"],
-                        gridSize: 14,
-                        directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-vertical']
-                    }
-                ],
-                dificil: [
-                    {
-                        words: ["ESMIRNA", "TARSO", "LISTRA", "DERBE", "ICONIO",
-                                "APOLONIA", "ANFIPOLIS", "BEROEIA", "NEAPOLIS", "TROAS"],
-                        gridSize: 14,
-                        directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
-                    },
-                    {
-                        words: ["ASSOS", "MITILENE", "QUIOS", "SAMOS", "MILETO",
-                                "COS", "RODES", "PATARA", "COLOSSOS", "HIERAPOLIS"],
-                        gridSize: 14,
-                        directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
-                    },
-                    {
-                        words: ["PENTAPOLIS", "ARIMATEIA", "FILADELFIA", "ESMIRNA", "TARSO",
-                                "LISTRA", "DERBE", "ICONIO", "APOLONIA", "ANFIPOLIS"],
-                        gridSize: 14,
-                        directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
-                    }
-                ]
-            };
+    facil: [
+        {
+            words: ["JERUSALÉM", "BELÉM", "NAZARÉ", "JERICÓ", "EGITO", 
+                    "CANAÃ", "SINAI", "GALILEIA", "SAMARIA", "JORDÃO"],
+            gridSize: 10,
+            directions: ['horizontal', 'vertical']
+        },
+        {
+            words: ["BETÂNIA", "JOPE", "CESAREIA", "DAMASCO", "ANTIOQUIA",
+                    "CORINTO", "ÉFESO", "ROMA", "ATENAS", "TESSALÔNICA"],
+            gridSize: 12,
+            directions: ['horizontal', 'vertical', 'diagonal']
+        },
+        {
+            words: ["FILIPOS", "GÁLATAS", "PÉRGAMO", "LAODICEIA", "PATMOS",
+                    "SARDES", "TIATIRA", "SÍRIA", "LÍBANO", "GETSÊMANI"],
+            gridSize: 12,
+            directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal']
+        }
+    ],
+    medio: [
+        {
+            words: ["GÓLGOTA", "SILOÉ", "BETESDA", "HOREBE", "ARARATE",
+                    "ARMAGEDOM", "DECÁPOLIS", "QUIRENE", "MACEDÔNIA", "PISÍDIA"],
+            gridSize: 12,
+            directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal']
+        },
+        {
+            words: ["PANFÍLIA", "CAPADÓCIA", "BITÍNIA", "PÔNTICO", "CILÍCIA",
+                    "FRÍGIA", "LÍCIA", "MÍSIA", "ACÁIA", "GERGESA"],
+            gridSize: 12,
+            directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal']
+        },
+        {
+            words: ["GADARA", "CESAREIA", "SICAR", "ENOM", "SIDOM",
+                    "TIRO", "ASCALÃO", "GAZA", "ARIMATEIA", "FILADÉLFIA"],
+            gridSize: 14,
+            directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-vertical']
+        }
+    ],
+    dificil: [
+        {
+            words: ["ESMIRNA", "TARSO", "LISTRA", "DERBE", "ICÔNIO",
+                    "APOLÔNIA", "ANFÍPOLIS", "BERÉIA", "NEÁPOLIS", "TROAS"],
+            gridSize: 14,
+            directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
+        },
+        {
+            words: ["ASSOS", "MITILENE", "QUIOS", "SAMOS", "MILETO",
+                    "COS", "RODES", "PATARA", "COLOSSOS", "HIERÁPOLIS"],
+            gridSize: 14,
+            directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
+        },
+        {
+            words: ["PENTÁPOLIS", "ARIMATEIA", "FILADÉLFIA", "ESMIRNA", "TARSO",
+                    "LISTRA", "DERBE", "ICÔNIO", "APOLÔNIA", "ANFÍPOLIS"],
+            gridSize: 14,
+            directions: ['horizontal', 'vertical', 'diagonal', 'reverse-diagonal', 'reverse-horizontal', 'reverse-vertical']
+        }
+    ]
+};
             
             // Game state
             let currentLevel = 'facil';
